@@ -1,9 +1,15 @@
+# Private configuration
+frontend/config.js
+.env
+.env.*
+!.env.example
+
+# Python
 __pycache__/
 *.pyc
 .venv/
-.env
+venv/
 
-frontend/config.js
-backend/resilienceos.db
-backend/resilienceos.db-journal
-backend/resilienceos.db-wal
+# Other
+node_modules/
+.DS_Store
