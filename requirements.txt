@@ -1,0 +1,2 @@
+# ResilienceOS relies entirely on the Python Standard Library (Python 3.10+)
+# No external pip dependencies are required.

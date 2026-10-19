@@ -1,0 +1,2 @@
+window.RESILIENCE_SUPABASE_URL = 'https://YOUR-PROJECT.supabase.co';
+window.RESILIENCE_SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_YOUR_KEY';

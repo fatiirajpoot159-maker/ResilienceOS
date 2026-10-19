@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+
+frontend/config.js
+backend/resilienceos.db
+backend/resilienceos.db-journal
+backend/resilienceos.db-wal

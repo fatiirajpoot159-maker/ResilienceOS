@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: resilienceos
+    runtime: python
+    buildCommand: ""
+    startCommand: "python backend/server.py"
+    envVars:
+      - key: PORT
+        value: 10000

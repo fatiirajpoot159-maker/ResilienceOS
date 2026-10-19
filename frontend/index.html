@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#08101e">
+  <title>ResilienceOS • Operations & Disruption Intelligence</title>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/ui-extra.css">
+</head>
+<body>
+
+<!-- WELCOME VIEW -->
+<section id="welcome" class="welcome-view">
+  <header class="welcome-nav">
+    <div class="brand">
+      <div class="mark">◈</div>
+      <span>resilience<span class="brand-accent">OS</span></span>
+    </div>
+    <div class="welcome-links">
+      <button id="showLogin" class="outline">Sign in</button>
+      <button id="showSignup" class="primary">Create account →</button>
+    </div>
+  </header>
+
+  <div class="welcome-hero">
+    <div class="welcome-message">
+      <span class="tag">FOR BAKERIES & INDUSTRIAL PRODUCTION</span>
+      <h1>Turn power outages into <em>optimal decisions.</em></h1>
+      <p>Dynamic programming scheduling optimizer with verified user data isolation, generator fuel ROI analytics, and role-protected administration.</p>
+      
+      <div class="welcome-actions">
+        <button id="startSignup" class="primary">Start for free →</button>
+        <button id="tryDemo" class="outline">Explore sample data</button>
+      </div>
+
+      <div class="hero-features">
+        <span>✓ Strict User Data Isolation</span>
+        <span>✓ Protected Admin Governance</span>
+        <span>✓ Generator Fuel ROI Analysis</span>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <img src="/bakery-hero.jpg" alt="Bakery Production Facility">
+      <div class="hero-floating">
+        <strong>ResilienceOS Operations Engine</strong>
+        <span>Exact Dynamic Programming • Zero AI Guesswork</span>
+        <div class="mini-bars">
+          <i></i><i></i><i></i><i></i><i></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="welcome-bottom">
+    <article>
+      <b>01 · Multi-Tenant Workspace</b>
+      <p>Each user operates in a strictly isolated workspace with their own orders, simulations, and business profile.</p>
+    </article>
+    <article>
+      <b>02 · Exact Optimization Engine</b>
+      <p>Mathematical single-machine DP optimizer eliminates delays and protects every possible rupee of profit.</p>
+    </article>
+    <article>
+      <b>03 · Administrator Control Center</b>
+      <p>Protected governance console accessible exclusively to verified administrators with audit logging.</p>
+    </article>
+  </div>
+</section>
+
+<!-- AUTHENTICATION VIEW -->
+<section id="authView" class="auth-view" hidden>
+  <div class="auth-art">
+    <div class="brand">
+      <div class="mark">◈</div>
+      <span>resilience<span class="brand-accent">OS</span></span>
+    </div>
+    <h2>A smarter plan for every unexpected interruption.</h2>
+    <p>Personalized cloud & SQL database storage. Each account is private and securely encrypted with PBKDF2-HMAC-SHA256.</p>
+    <img src="/bakery-hero.jpg" alt="Bakery products">
+  </div>
+
+  <div class="auth-card">
+    <button id="backHome" class="text-btn">← Back to home</button>
+    <div class="eyebrow" style="margin-top:10px;">SECURE RESILIENCE OS ACCESS</div>
+    <h2 id="authTitle">Welcome back</h2>
+    <p id="authSub">Sign in to your private production workspace.</p>
+
+    <div id="ownerSetupNotice" style="background:rgba(255, 214, 102, 0.15);border:1px solid #7a6023;border-radius:10px;padding:12px 14px;margin:14px 0;font-size:12px;color:#ffd666;" hidden>
+      👑 <strong>Master Admin Setup:</strong> No administrator is registered yet. The first account created will become the sole <strong>System Administrator & Owner</strong>.
+    </div>
+
+    <form id="authForm">
+      <div id="signupFields" hidden>
+        <label>Full Name
+          <input id="authName" type="text" autocomplete="name" maxlength="100" placeholder="e.g. Bilal Tariq">
+        </label>
+        <label style="margin-top:14px;">Bakery / Business Name
+          <input id="authBizName" type="text" maxlength="100" placeholder="e.g. Gourmet Artisan Bakery">
+        </label>
+      </div>
+
+      <label>Email Address
+        <input id="authEmail" type="email" required autocomplete="email" placeholder="you@example.com">
+      </label>
+
+      <label>Password
+        <div class="input-with-icon">
+          <input id="authPassword" type="password" required minlength="6" autocomplete="current-password" placeholder="Minimum 6 characters">
+          <button type="button" id="togglePasswordBtn" class="toggle-pwd-btn" title="Show/Hide Password">👁</button>
+        </div>
+      </label>
+
+      <div id="confirmPwdWrap" hidden>
+        <label>Confirm Password
+          <input id="authConfirmPassword" type="password" minlength="6" placeholder="Re-enter password">
+        </label>
+      </div>
+
+      <button id="authSubmit" type="submit" class="primary">Sign in →</button>
+    </form>
+
+    <div id="authMessage" role="status"></div>
+
+    <div style="margin-top:16px;">
+      <button id="authSwitch" class="text-btn">New here? Create account</button>
+      <button id="forgotPassword" class="text-btn">Forgot password?</button>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN WORKSPACE -->
+<div class="layout" id="workspace" hidden>
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="mark">◈</div>
+      <span>resilience<span class="brand-accent">OS</span></span>
+    </div>
+
+    <div class="workspace">
+      WORKSPACE <span id="sidebarRoleIndicator" class="indicator">● OPERATOR WORKSPACE</span>
+    </div>
+
+    <nav>
+      <a href="#overview" class="nav active">▦ <span>Overview</span></a>
+      <a href="#scenario" class="nav">⚡ <span>Disruption Lab</span></a>
+      <a href="#timeline" class="nav">▤ <span>Production Timeline</span></a>
+      <a href="#insights" class="nav">✧ <span>Decision Insights</span></a>
+      <a href="#account" class="nav">☁ <span>My Account & Cloud</span></a>
+      <!-- ADMIN-ONLY SIDEBAR LINK -->
+      <a href="#adminPanel" id="adminSidebarNav" class="nav" hidden style="color:#ffd666;border:1px solid #7a6023;background:#241d0c;">
+        🛡️ <span>Admin Console</span>
+      </a>
+    </nav>
+
+    <div class="side-bottom">
+      <div class="side-small">YOUR WORKSPACE</div>
+      <div id="sidebarBizName" class="industry">♨ &nbsp; Artisan Oven & Pastries</div>
+
+      <div class="side-small" style="margin-top:20px;">SECURITY & ARCHITECTURE</div>
+      <p class="side-copy">User Isolated • Multi-Tenant • Exact DP Solver • Role Protected</p>
+      
+      <div class="sideline"></div>
+      <p class="made">ResilienceOS Enterprise Edition<br>Team Innovatrix</p>
+    </div>
+  </aside>
+
+  <!-- MAIN VIEW -->
+  <main class="main" id="overview">
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <span class="crumb">ResilienceOS <b>/</b> Production & Outage Intelligence</span>
+      
+      <div class="topright">
+        <span class="green-dot"></span>
+        <span id="systemStatusText">DB Online (Isolated)</span>
+        
+        <!-- User Profile Widget in Topbar -->
+        <div class="user-profile-pill">
+          <div id="topUserAvatar" class="user-avatar-circle">BT</div>
+          <div class="user-pill-info">
+            <span id="topUserName" class="user-pill-name">User</span>
+            <span id="topUserRole" class="role-badge user">OPERATOR</span>
+          </div>
+          <button id="topLogoutBtn" class="outline small" style="padding:4px 8px;font-size:11px;margin-left:6px;" title="Sign out">Log out</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="content">
+      <!-- HEADER -->
+      <div class="heading-row">
+        <div>
+          <div class="eyebrow">OPERATIONAL COMMAND CENTER <span class="spark">✦</span></div>
+          <h1>Be ready for <em>what's next.</em></h1>
+          <p class="subtitle">Model power disruption. Eliminate late penalties. Maximize production resilience.</p>
+        </div>
+        <div style="display:flex;gap:10px;">
+          <button class="outline" id="loadDemo">↺ &nbsp; Load sample bakery data</button>
+        </div>
+      </div>
+
+      <!-- CLOUD ACCOUNT & MULTI-TENANT ISOLATION PANEL -->
+      <section class="panel cloud-panel" id="account" style="margin-top:24px;">
+        <div class="panel-head">
+          <div>
+            <div class="eyebrow">ISOLATED USER WORKSPACE</div>
+            <h3>Account & Database Status</h3>
+            <p id="cloudStatus">Connected to local SQL storage. Your orders and simulations are strictly private.</p>
+          </div>
+          <span class="panel-icon">☁</span>
+        </div>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+          <div>
+            <p id="cloudUser" style="font-weight:700;margin:0;font-size:14px;color:#e6f3ff;"></p>
+            <p id="cloudBiz" style="color:#8ba4be;font-size:12px;margin:4px 0 0 0;"></p>
+          </div>
+          <span id="accountRoleTag" class="role-badge user">BUSINESS OPERATOR</span>
+        </div>
+
+        <div class="cloud-toolbar" style="margin-top:18px;">
+          <button class="outline small" id="cloudSave">💾 Save orders to my account</button>
+          <button class="outline small" id="cloudLoad">📂 Load my orders</button>
+          <button class="outline small" id="cloudHistory">📜 My simulations history</button>
+          <button class="outline small" id="cloudLogout">🚪 Sign out</button>
+          <!-- ADMIN NAV BUTTON: STRICTLY HIDDEN UNLESS ADMIN -->
+          <button class="outline small" id="adminNav" hidden style="border-color:#ffd666;color:#ffd666;background:#2b220c;">
+            🛡️ Admin Control Panel
+          </button>
+        </div>
+
+        <div id="cloudHistoryList"></div>
+        <p id="cloudError" role="alert"></p>
+      </section>
+
+      <!-- STRICTLY PROTECTED ADMIN PANEL -->
+      <section class="panel" id="adminPanel" hidden style="margin-top:24px;">
+        <div class="panel-head">
+          <div>
+            <div class="eyebrow" style="color:#ffd666;">🛡️ RESTRICTED ACCESS — ADMINISTRATOR ONLY</div>
+            <h3 style="color:#ffd666;">Admin Control Center & Governance</h3>
+            <p>System-wide health, multi-tenant accounts, simulation audit logs, and security metrics.</p>
+          </div>
+          <span class="panel-icon" style="color:#ffd666;">🛡️</span>
+        </div>
+
+        <!-- Admin KPI Metrics -->
+        <div id="adminStats">
+          <div class="admin-stat">
+            <span>Registered Users</span>
+            <strong id="adminStatUsers">0</strong>
+          </div>
+          <div class="admin-stat">
+            <span>Businesses</span>
+            <strong id="adminStatBiz">0</strong>
+          </div>
+          <div class="admin-stat">
+            <span>Total Orders</span>
+            <strong id="adminStatOrders">0</strong>
+          </div>
+          <div class="admin-stat">
+            <span>Simulations Run</span>
+            <strong id="adminStatSims">0</strong>
+          </div>
+          <div class="admin-stat gold">
+            <span>Total Losses Prevented</span>
+            <strong id="adminStatSavings">Rs 0</strong>
+          </div>
+        </div>
+
+        <!-- Admin Tabs -->
+        <div class="admin-tabs">
+          <button class="admin-tab active" id="tabUsersBtn">👥 User Accounts & Roles</button>
+          <button class="admin-tab" id="tabSimsBtn">⚡ Global Simulations Feed</button>
+          <button class="admin-tab" id="tabAuditBtn">🔒 System Audit Trail</button>
+        </div>
+
+        <!-- Tab 1: Users Table -->
+        <div id="adminUsersTabSection">
+          <div class="admin-search-bar">
+            <input type="text" id="adminUserSearch" placeholder="🔍 Search users by name or email…">
+            <button id="refreshAdmin" class="outline small">↻ Refresh Data</button>
+          </div>
+          <div id="adminUsers"></div>
+        </div>
+
+        <!-- Tab 2: Global Simulations Table -->
+        <div id="adminSimsTabSection" hidden>
+          <div id="adminSimulationsTable"></div>
+        </div>
+
+        <!-- Tab 3: Audit Logs Table -->
+        <div id="adminAuditTabSection" hidden>
+          <div id="adminAuditLogs"></div>
+        </div>
+
+        <p id="adminError" role="alert"></p>
+      </section>
+
+      <!-- BANNER -->
+      <div class="intro-banner">
+        <div>
+          <span class="tag">✦ MATHEMATICAL OPTIMIZATION ENGINE</span>
+          <h2>What if power cuts strike your baking schedule?</h2>
+          <p>Model power outages, evaluate generator fuel costs, and reorder production batches using exact dynamic programming to save every possible rupee.</p>
+        </div>
+        <div class="banner-icon">⚡</div>
+      </div>
+
+      <!-- METRICS CARDS -->
+      <div class="section-header">
+        <h3>At a glance</h3>
+        <span>Financial impact modeled from exact scenario inputs</span>
+      </div>
+
+      <div class="metrics">
+        <div class="metric">
+          <div class="metric-label">BASELINE RISK <span class="metric-icon">↗</span></div>
+          <div class="metric-value" id="baselineLoss">—</div>
+          <div class="metric-foot">Estimated loss · first-come order</div>
+        </div>
+
+        <div class="metric">
+          <div class="metric-label">OPTIMIZED RISK <span class="metric-icon">◎</span></div>
+          <div class="metric-value" id="optimizedLoss">—</div>
+          <div class="metric-foot">Estimated loss · optimal sequence</div>
+        </div>
+
+        <div class="metric emphasized">
+          <div class="metric-label">LOSS PREVENTED <span class="metric-icon">✦</span></div>
+          <div class="metric-value" id="savings">—</div>
+          <div class="metric-foot" id="savingsHint">Run simulation to evaluate</div>
+        </div>
+
+        <div class="metric">
+          <div class="metric-label">ORDERS SAVED <span class="metric-icon">▤</span></div>
+          <div class="metric-value" id="recovered">—</div>
+          <div class="metric-foot">Additional completed on-time batches</div>
+        </div>
+      </div>
+
+      <!-- DISRUPTION LAB & PRODUCTION ORDERS -->
+      <div class="two-col" id="scenario">
+        <!-- 01 / SCENARIO DESIGNER -->
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <div class="eyebrow">01 / SCENARIO DESIGNER</div>
+              <h3>Disruption Lab</h3>
+              <p>Model outage constraints & generator economics</p>
+            </div>
+            <span class="panel-icon">⚡</span>
+          </div>
+
+          <!-- Scenario Presets -->
+          <div style="margin-bottom:10px;">
+            <span style="font-size:11px;color:#89a2b9;font-weight:700;display:block;margin-bottom:6px;">QUICK OUTAGE PRESETS:</span>
+            <div class="preset-bar">
+              <button type="button" class="preset-btn" data-start="6" data-dur="5">☀️ Summer Peak (2.5h)</button>
+              <button type="button" class="preset-btn" data-start="4" data-dur="8">⚡ Severe Grid Outage (4h)</button>
+              <button type="button" class="preset-btn" data-start="2" data-dur="3">🌅 Morning Feeder Trip (1.5h)</button>
+              <button type="button" class="preset-btn" data-start="0" data-dur="0">🟢 No Outage (Normal Shift)</button>
+            </div>
+          </div>
+
+          <div class="field-grid">
+            <label>Outage starts at <span class="field-hint">Slot from shift start</span>
+              <input type="number" id="outageStart" min="0" max="24" value="6">
+            </label>
+            <label>Duration <span class="field-hint">30-min slots</span>
+              <input type="number" id="outageDuration" min="0" max="24" value="5">
+            </label>
+          </div>
+
+          <label class="label-with-help">Penalty per late 30 minutes (PKR)
+            <input type="number" id="lateRate" min="0" value="350">
+          </label>
+
+          <label class="toggle-line">
+            <span>
+              <strong>Backup electricity (Generator / Solar)</strong>
+              <small>Oven remains operational during outage hours</small>
+            </span>
+            <input type="checkbox" id="backup">
+            <span class="switch"></span>
+          </label>
+
+          <!-- ADVANCED FEATURE: GENERATOR FUEL & ROI PANEL -->
+          <div id="generatorBox" class="generator-roi-box" hidden>
+            <h4>🔋 Generator Fuel Economics & ROI Analysis</h4>
+            <div class="generator-fields">
+              <label>Fuel Consumption (Liters/hr)
+                <input type="number" id="fuelRate" min="0" step="0.1" value="2.5">
+              </label>
+              <label>Diesel Price (PKR/Liter)
+                <input type="number" id="fuelPrice" min="0" value="285">
+              </label>
+            </div>
+            <div id="generatorRoiResult" class="roi-result-card">
+              <span>Fuel Cost: <strong>Rs 0</strong></span>
+              <span>Net Economic Benefit: <strong>Rs 0</strong></span>
+            </div>
+          </div>
+
+          <div class="note">
+            ⓘ &nbsp; Slots represent 30-minute intervals. The 12-hour bakery day comprises 24 consecutive slots.
+          </div>
+
+          <button id="run" class="primary">✦ &nbsp; Run optimization <span>→</span></button>
+          <div class="error" id="error" role="alert"></div>
+        </section>
+
+        <!-- 02 / WORKLOAD TABLE -->
+        <section class="panel orders-panel">
+          <div class="panel-head">
+            <div>
+              <div class="eyebrow">02 / WORKLOAD MANAGEMENT</div>
+              <h3>Production Orders</h3>
+              <p>Custom orders for your specific bakery or factory</p>
+            </div>
+            <span class="order-counter" id="jobCount">0 ORDERS</span>
+          </div>
+
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>ORDER NAME</th>
+                  <th>SLOTS (30m)</th>
+                  <th>DEADLINE</th>
+                  <th>MISS PENALTY (PKR)</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="jobRows"></tbody>
+            </table>
+          </div>
+
+          <div class="table-actions">
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <button class="outline small" id="addJob">+ Add order</button>
+              <button class="outline small" id="printWorkOrder">📄 Print Work Order</button>
+              <button class="outline small" id="exportCsv">📤 Export CSV</button>
+              <button class="outline small" id="importCsvBtn">📥 Import CSV</button>
+              <input type="file" id="csvFileInput" accept=".csv" hidden>
+            </div>
+            <button class="text-btn" id="exportScenario">↓ Export JSON</button>
+          </div>
+
+          <p class="tiny">Order duration, deadline, and penalties are editable. Maximum 12 orders per production shift.</p>
+        </section>
+      </div>
+
+      <!-- 03 / PRODUCTION TIMELINE -->
+      <section class="panel timeline-panel" id="timeline">
+        <div class="panel-head between">
+          <div>
+            <div class="eyebrow">03 / VISUAL COMPARISON</div>
+            <h3>Production Timeline</h3>
+            <p>Side-by-side comparison: FIFO vs Mathematically Optimal Dispatch</p>
+          </div>
+          <div class="legend">
+            <span><i class="square c-one"></i> ResilienceOS Optimized</span>
+            <span><i class="square" style="background:#325d85;"></i> Baseline (FIFO)</span>
+            <span><i class="square c-red"></i> Outage Window</span>
+          </div>
+        </div>
+
+        <div id="timelineContainer" class="timeline-empty">
+          Click "Run optimization" to visualize and schedule the 12-hour shift.
+        </div>
+      </section>
+
+      <!-- 04 & 05 / DECISION INSIGHTS & TECHNICAL TRANSPARENCY -->
+      <div class="two-col bottom-grid">
+        <section class="panel" id="insights">
+          <div class="panel-head">
+            <div>
+              <div class="eyebrow">04 / THE RECOMMENDATION</div>
+              <h3>Decision Insights</h3>
+              <p>Actionable operational guidance, backed by verified math</p>
+            </div>
+            <span class="panel-icon">✧</span>
+          </div>
+          <div id="insightBody" class="insight-empty">
+            Recommended batch sequencing will appear here after running simulation.
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <div class="eyebrow">05 / TECHNICAL TRANSPARENCY</div>
+              <h3>Why this result?</h3>
+              <p>Zero fabricated scores or hallucinated outputs</p>
+            </div>
+            <span class="panel-icon">⌁</span>
+          </div>
+          <div id="techBody">
+            <div class="technical-line"><span>Solver Algorithm</span><strong>Exact Dynamic Programming (Memoized DP)</strong></div>
+            <div class="technical-line"><span>Production Capacity</span><strong>1 Continuous Oven / Production Line</strong></div>
+            <div class="technical-line"><span>Shift Horizon</span><strong>12 Operating Hours (24 Slots)</strong></div>
+            <div class="technical-line"><span>Data Isolation</span><strong>Strict Multi-Tenant SQLite Database</strong></div>
+            <div class="technical-line"><span>Authentication</span><strong>PBKDF2-HMAC-SHA256 with Cryptographic Salt</strong></div>
+            <div class="technical-line"><span>Governance</span><strong>Role-Based Access Control (Admin Restricted)</strong></div>
+          </div>
+        </section>
+      </div>
+
+      <footer>
+        ResilienceOS Enterprise Edition · Decision intelligence for local businesses & bakeries
+        <span>Built for Team Innovatrix • National Hackathon 2026</span>
+      </footer>
+    </div>
+  </main>
+</div>
+
+<!-- SCRIPTS -->
+<script src="/config.js"></script>
+<script src="/app.js"></script>
+<script src="/auth.js"></script>
+</body>
+</html>
